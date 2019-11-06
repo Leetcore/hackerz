@@ -8,7 +8,7 @@ remoteIP = socket.gethostbyname(remoteIPInput)
 print "Scanning host", remoteIP
 
 try:
-    for port in range(1,1025):
+    for port in range(1,1337):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(3)
         result = sock.connect_ex((remoteIP, port))
