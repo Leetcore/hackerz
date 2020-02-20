@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 import socket
 import sys
+import threading
 
-remoteIPInput = raw_input("Host to scan: ")
+remoteIPInput = input("Host to scan: ")
 remoteIP = socket.gethostbyname(remoteIPInput)
 
-print "Scanning host", remoteIP
+print("Scanning host: "+ remoteIP)
+
+def scan(remoteIP, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(3)
+    result = sock.connect_ex((remoteIP, port))
+    if result == 0:
+        print("Port "+ str(port) + " Open!")
+    sock.close()
 
 try:
     for port in range(1,1337):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(3)
-        result = sock.connect_ex((remoteIP, port))
-        sock.settimeout(None)
-        if result == 0:
-            print "Port "+ str(port) + " Open!"
-        sock.close()
-
+        threading.Thread(target=scan, args=(remoteIP, port)).start()
 except KeyboardInterrupt:
-    print "Stopped"
+    print("Stopped")
     sys.exit()
