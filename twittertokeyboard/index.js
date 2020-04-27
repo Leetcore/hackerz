@@ -72,7 +72,7 @@ function checkKeywordsToKeys (text, username) {
 }
 
 function hitKey (key) {
-	// press key down and go back up in 300 ms
+	// press key down and go back up in 500 ms
 	globalTimer = globalTimer + 500;
 	setTimeout(function (key) {
 		console.log('key: '+ key);	
